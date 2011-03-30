@@ -1,0 +1,16 @@
+# This file shows what changes are necessary to make to your ~/.muttrc.
+#
+# Required lines MUST be in your ~/.muttrc for the scripts to work, or you
+# might experience undesired behavior.
+#
+# Recommended lines are just that- recommended for a better Mutt experience
+# with Penny Red.
+
+set display_filter="/path/to/verify_hashcash.py"    # required
+set editor="/path/to/mint_hashcash.py"              # required
+set edit_headers="yes"                              # required
+unignore x-hashcash hashcash                        # required
+
+set askcc="yes"                                     # recommended
+set askbcc="yes"                                    # recommended
+color body brightyellow default "^\\[--.*Hashcash*" # recommended
