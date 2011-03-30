@@ -1,0 +1,106 @@
+INTRODUCTION
+============
+Penny Red is an Hashcash implementation for Mutt using Python. Penny Red
+combats spam email by making the sender pay for the email using CPU cycles.
+Outgoing mail is marked with a token identified with the "X-Hashcash"
+header. Every recipient receives their own token. Minting may take a second
+or two per token.
+
+Recipients verify the token is valid using the Hashcash binary, and keep a
+copy of the token in a local database. Users are notified whether or not
+the token is valid, spent or invalid. If the token is valid, the recipient
+can be convinced that the sender of the mail is genuine.
+
+ABOUT PENNY RED
+===============
+Penny Red is a Hashcash frontend for the Mutt MUA. Thus, Penny Red assumes
+that you have Hashcash and Mutt installed. Because Penny Red is a Python
+solution, it also assumes you have Python installed to execute the scripts.
+
+Penny Red is not for other MUAs, such as Gnus, Alpine or others, although
+you could probably fork the code, and make it work with other MUAs as
+needed.
+
+Penny Red was developed as a need to get Mutt working with Hashcash. The
+solutions that currently existed at the time didn't fit well with using
+Mutt to connect to Gmail via IMAPS/SMTPS. Thus, the "hashcash-sendmail"
+wouldn't work, and Tim Ruddick's Perl solution did not come with any
+documentation on how to install it. So, Penny Red was created.
+
+Penny Red requires some changes to your ~/.muttrc and has some basic
+minimum software requirments to work. See the CONFIG and REQUIREMENTS files
+for details.
+
+WHY HASHCASH WORKS
+==================
+Hashcash works, because it is not based on a trial-and-error approach like
+most spam filters. Instead, each sender must pay for the email by minting
+tokens for every recipient in the mail. This payment is made in terms of
+computer time rather than actual money. The additional computer time
+required is negligent, and the sender will likely not be bothered by the
+additional time it takes to send an email.
+
+Hashcash tokens cannot be forged, as they rely on a valid SHA1 sum to start
+with a specified number of bits to be zero. Further, tokens have a valid
+timestamp on the date of their mint. Hashcash expires tokens (28 days by
+default), so old tokens cannot be reused.
+
+Here's an example of minting a valid token:
+
+    $ hashcash -m user@server.tld
+    hashcash stamp: 1:20:110330:user@server.tld::q/Vef65O3EV46S/3:0057QH
+    $ echo -n hashcash stamp: 1:20:110330:user@server.tld::q/Vef65O3EV46S/3:0057QH | sha1sum
+    00b566a8acec0f4568b1e1e9fc5a35794e483c10  -
+
+Because the token "1:20:110330:user@server.tld::q/Vef65O3EV46S/3:0057QH"
+has a valid date it was minted "110330 = 03/30/2011", and because the token
+itself produces the sha1sum of 00b566a8acec0f4568b1e1e9fc5a35794e483c10,
+the token is valid.
+
+Hashcash is designed to be slow to mint, but fast to verify. Thus, users
+who receive email with valid tokens in the header can verify the validity
+in a fraction of a second, where it may have taken the sender up to a full
+second to create. This helps mitigate spam as spammers depend on the
+ability to send billions of email a day. There are only 86,400 seconds in
+one day, so minting tokens for every mail would limit the spam ring
+operations to 86400 mails per computer, a far cry from the goal of sending
+billions.
+
+ADVANTAGES
+==========
+Many antispam software solutions, such as SpamAssassin, support Hashcash
+tokens in the mail header. Because Hashcash is designed to be quick to
+verify, but slow to mint, SpamAssassin can do the verification on the MTA
+with fractional overhead. If the token verifies, the antispam software can
+then mark the mail as non-spam, and deliver the mail to the INBOX, even if
+it would have otherwise failed.
+
+Thus, users who send mail with valid Hashcash tokens in the mail header can
+have confidence that their mail can reach the INBOX of the recipient. Of
+course, the email administrator must configure the antispam software to
+accept tokens. So if the sender does send an email with valid minted
+tokens, that ends up in the SPAM folder of the recipient, the sender could
+send an email to the email administrator, asking for them to enable
+checking for valid tokens.
+
+Of course, the biggest advantage of Hashcash is the ability to virtually
+stop spam in its tracks. If more and more people use proof-of-work systems,
+such as Hashcash, then we can begin demanding that email have valid tokens
+attached, or mark the mail as spam. When we reach this point, spammers will
+have to come up with new hardware solutions for minting the tokens, and
+getting the mail into our INBOX.
+
+ADDITIONAL INFO
+===============
+Please see http://hashcash.org/ for more information about Hashcash.
+
+HISTORICAL PENNY RED
+====================
+The name for this project comes from the "One Penny Red" British postal
+stamp of 1841. It succeeded the Penny Black stamp, and continued as the
+main type of postage stamp in the United Kingdom of Great Britain until
+1879. The stamp was changed from black to red, because seeing the
+cancellation mark on a Penny Black stamp proved difficult, while it was
+easier to see on a Penny Red stamp.
+
+See http://en.wikipedia.org/wiki/Penny_Red for more historical info.
