@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# Licensed under the public domain
 
 import rfc822
 import StringIO
