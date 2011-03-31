@@ -7,7 +7,7 @@ import sys
 
 # Change the DB path in COMMAND as needed, and change your email address
 COMMAND="hashcash -cdb '%s' -r '%s' -f ~/.mutt/hashcash.db '%s'"
-EMAILADDR="aaron.toponce@gmail.com"
+EMAILADDR=("aaron.toponce@gmail.com")
 
 tokens = []
 token_status = []
@@ -29,7 +29,7 @@ if message.has_key("Hashcash"):
 if tokens:
     token_status.append("[-- Begin Hashcash output --]")
     for hc_token in tokens:
-        if hc_token.split(":")[3] == EMAILADDR:
+        if hc_token.split(":")[3] in EMAILADDR:
             hc_bits = hc_token.split(":")[1]
             hc_resource = hc_token.split(":")[3]
             p = subprocess.Popen(COMMAND % (hc_bits,hc_resource,hc_token),
