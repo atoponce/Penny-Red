@@ -1,3 +1,29 @@
+commit a3ea23bb801ec9286a1dc7e7adb3878544c7db8a
+Author: Aaron Toponce <aaron.toponce@gmail.com>
+Date:   Tue Apr 5 06:41:59 2011 -0600
+
+    Logic update to mint_hashcash.py and mode change to verify_hashcash.py
+    
+    I noticed that I could speed up the minting script by just adding if logic
+    to check of there are indeed any mails in the list. If not, move on. Also,
+    made a mode change to verify_hashcash.py, so it will actually execute. Heh.
+
+commit bcf581d6a06dcae2235c33a6c44581b4dc9b1ef1
+Author: Aaron Toponce <aaron.toponce@gmail.com>
+Date:   Mon Apr 4 23:35:36 2011 -0600
+
+    Changed RELEASE* to SHA256SUMS for clarity
+
+commit 32bd8e36cb6777f20c7af92a51ca99991f7397c6
+Author: Aaron Toponce <aaron.toponce@gmail.com>
+Date:   Mon Apr 4 23:31:15 2011 -0600
+
+    Updated the CHANGELOG and added RELEASE and RELEASE.asc files
+    
+    Decided to use 'git log > CHANGELOG' for the changes made and I then
+    created RELEASE and RELEASE.asc files for SHA256SUMs and a detached GPG
+    signature of the sums using my public key.
+
 commit 1b1c66ff00c46a9b98661a851cabb5919cec2fa2
 Author: Aaron Toponce <aaron.toponce@gmail.com>
 Date:   Mon Apr 4 20:34:49 2011 -0600
