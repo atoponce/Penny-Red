@@ -1,6 +1,75 @@
-110330 - 30-Mar-2011 - Aaron Toponce <aaron.toponce@gmail.com>
+commit 1b1c66ff00c46a9b98661a851cabb5919cec2fa2
+Author: Aaron Toponce <aaron.toponce@gmail.com>
+Date:   Mon Apr 4 20:34:49 2011 -0600
 
-    * Initial commit
-    * Blogged at:
-        http://pthree.org/2011/03/24/hashcash-and-mutt/
-        http://pthree.org/2011/03/29/verifying-hashcash-tokens-with-mutt/
+    Updated logic to close issues 1 & 4
+    
+    Updated logic to support the tuple of email addresses for verification. By
+    doing so, not only are tokens only checked for those that have been minted
+    for the addresses found en EMAILADDR, but any tokens not addressed to said
+    recipients aren't checked. Also, got rid of the logic displaying that no
+    tokens were found- figured it was unneeded noise.
+
+commit 575f421b110a0b7cfb62d4d5a8e43cd9bdd7edd0
+Author: Ian McEwen <ianmcorvidae@ianmcorvidae.net>
+Date:   Wed Mar 30 20:47:09 2011 -0700
+
+    Changed EMAILADDR to a tuple for multiple-email support; changed == to in on relevant line for this change.
+
+commit 5d4318e3a4f41142663450d704f4d3e2bfb8bafe
+Author: Aaron Toponce <aaron.toponce@gmail.com>
+Date:   Wed Mar 30 16:52:13 2011 -0600
+
+    Initial commit
+    
+    Added the necessary requirements for Penny Red to function.
+
+commit 40a33e89fa9fc7db8ef2c8544d8be5ed6b45913c
+Author: Aaron Toponce <aaron.toponce@gmail.com>
+Date:   Wed Mar 30 16:46:12 2011 -0600
+
+    Inital commit
+    
+    Added a sample CONFIG for ~/.muttrc. It's valid .muttrc syntaxt, and can
+    be copied and pasted directly into an existing ~/.muttrc.
+
+commit 0ebbacf153c3ddfa33ec38bb1f232811a5dc1028
+Author: Aaron Toponce <aaron.toponce@gmail.com>
+Date:   Wed Mar 30 16:38:39 2011 -0600
+
+    Removed old license
+    
+    When this script was initially created, and I blogged about it, it as
+    well as the minting script were licensed under the public domain.
+    However, after creating this project on Github, I've changed the
+    license to the GPLv3, but forgot to remove the license comment from the
+    script. Thus, this commit.
+
+commit 214884599fe06bba8deb6646f2ac784e9c9e5925
+Author: Aaron Toponce <aaron.toponce@gmail.com>
+Date:   Wed Mar 30 15:57:47 2011 -0600
+
+    Added CHANGELOG, LICENSE, mint_hashcash.py and verify_hashcash.py
+    
+    Chose to use a date timestamp for the version numbers, rather than
+    "1.0", "2.0", etc. This way, it is clear when the latest release is
+    without checking the webpage for the date.
+    
+    Also, chose to use the GPLv3 for the license, because Mutt is licensed
+    under the GPLv2+ and it didn't make sense to give the project a license
+    that allows proprietary redistribution, when the very project it relies
+    on does not.
+    
+    Lastly, the minting and verification Python scripts are inital adds.
+
+commit 1787cd4c36e9c3f94e71f66533b7b51f1980f91d
+Author: Aaron Toponce <aaron.toponce@gmail.com>
+Date:   Wed Mar 30 15:42:31 2011 -0600
+
+    Inital commit of information for README
+
+commit bd60cdfb0679fd09b74f98349167238d1916cb7b
+Author: Aaron Toponce <aaron.toponce@gmail.com>
+Date:   Wed Mar 30 15:04:21 2011 -0600
+
+    first commit
